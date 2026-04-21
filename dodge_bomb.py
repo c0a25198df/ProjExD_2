@@ -59,6 +59,24 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:#拡大加速
     bb_accs = [a for a in range(1,11)]
     return bb_imgs, bb_accs
 
+
+def get_kk_imgs() -> dict[tuple[int, int], pg.Surface]:
+    kk0 = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
+
+    kk_imgs = {
+        (0, 0): kk0,
+        (0, -5): pg.transform.rotozoom(kk0, 90, 1.0),
+        (0, 5): pg.transform.rotozoom(kk0, -90, 1.0),
+        (-5, 0): pg.transform.flip(kk0, True, False),
+        (5, 0): kk0,
+        (-5, -5): pg.transform.rotozoom(pg.transform.flip(kk0, True, False), 45, 1.0),
+        (5, -5): pg.transform.rotozoom(kk0, 45, 1.0),
+        (-5, 5): pg.transform.rotozoom(pg.transform.flip(kk0, True, False), -45, 1.0),
+        (5, 5): pg.transform.rotozoom(kk0, -45, 1.0),
+    }
+
+    return kk_imgs
+
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
