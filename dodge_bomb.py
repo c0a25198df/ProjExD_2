@@ -59,7 +59,6 @@ def init_bb_imgs() -> tuple[list[pg.Surface], list[int]]:#拡大加速
     bb_accs = [a for a in range(1,11)]
     return bb_imgs, bb_accs
 
-
 def get_kk_imgs() -> dict[tuple[int, int], pg.Surface]:
     kk0 = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
 
@@ -74,8 +73,8 @@ def get_kk_imgs() -> dict[tuple[int, int], pg.Surface]:
         (-5, 5): pg.transform.rotozoom(pg.transform.flip(kk0, True, False), -45, 1.0),
         (5, 5): pg.transform.rotozoom(kk0, -45, 1.0),
     }
-
     return kk_imgs
+
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
@@ -84,7 +83,6 @@ def main():
     kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"), 0, 0.9)
     kk_rct = kk_img.get_rect()
     kk_rct.center = 300, 200
-
 
     bb_img = pg.Surface((20, 20))#爆弾用の空のサーフェイス
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)#爆弾の円を描く
@@ -95,6 +93,7 @@ def main():
     bb_imgs, bb_accs = init_bb_imgs()
     clock = pg.time.Clock()
     tmr = 0
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
@@ -106,7 +105,6 @@ def main():
             return
         
         screen.blit(bg_img, [0, 0]) 
-
         key_lst = pg.key.get_pressed()
         sum_mv = [0, 0]
         
